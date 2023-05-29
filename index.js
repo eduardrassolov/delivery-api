@@ -26,9 +26,10 @@ app.listen(PORT_NUBMER, () => {
   console.log(`Server running on port ${PORT_NUBMER}`);
 });
 //
-app.get('/', (req,res)) =>{
+app.get('/', (req,cres) =>{
   res.setHeader("Access-Control-Allow-Credentials", true);
-}
+  red.send('');
+});
 
 //from client - when page loads. From server - send to client array of all shops
 app.get("/api/getshops", async (req, res) => {
