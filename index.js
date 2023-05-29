@@ -13,7 +13,6 @@ const {
   PORT_NUBMER,
   OPTIONS,
 } = require("./config.js");
-const { async } = require("regenerator-runtime");
 
 //TODO: refactor CRUD operations, make more ORM-like
 
