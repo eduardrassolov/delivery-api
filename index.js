@@ -21,14 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //
-app.listen(PORT_NUBMER, () => {
-  console.log(`Server running on port ${PORT_NUBMER}`);
+app.listen(3001, () => {
+  console.log(`Server running on port 3001`);
 });
 //
-app.get('/', (req,cres) =>{
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  red.send('');
-});
 
 //from client - when page loads. From server - send to client array of all shops
 app.get("/api/getshops", async (req, res) => {
@@ -78,20 +74,25 @@ app.post("/api/submitorder", async (req, res) => {
     }),
   };
   const response = await addOrderToDb(orderToSend);
+  console.log("resoponse, response");
   res.send(response);
 });
 async function addOrderToDb(order) {
   await mongoose.connect(DB_URL_CONNECTION, OPTIONS);
-  let result;
+  let returnedInfo;
   try {
     const orderList = await orders.find();
     order.number_order = getLastOrder(orderList);
 
-    result = await orders.create(order);
+    const result = await orders.create(order);
+
+    returnedInfo = await searchOrders("number_order", result.number_order);
+
+    console.log("val - ", returnedInfo);
   } catch (err) {
     console.error(err);
   } finally {
-    return result;
+    return returnedInfo;
   }
 }
 
