@@ -1,7 +1,7 @@
 ## delivery-api
 Used node.js, express and MongoDb and mongoose.
 
-to start: npm run start
+to start: npm install. npm run start
 
 ### server deployed at: https://delivery-api-ytga.onrender.com/ 
 1. Get all shops: '/api/getshops'
